@@ -11,5 +11,6 @@ const userLogin = data => {
 const getUserInfo = () => {
   return request.get('/mp/v1_0/user/profile')
 }
+
 // 导出
 export { userLogin, getUserInfo }
