@@ -39,6 +39,20 @@ const editArticle = (data, params) => {
   return request.put(`/mp/v1_0/articles/${params}`, data)
 }
 
+// 修改文章评论状态
+const editCommentStatus = (id, status) => {
+  return request({
+    url: '/mp/v1_0/comments/status',
+    method: 'PUT',
+    data: {
+      allow_comment: status
+    },
+    params: {
+      article_id: id
+    }
+  })
+}
+
 // 导出
 export {
   getChannels,
@@ -46,5 +60,6 @@ export {
   removeArticle,
   addArticle,
   inquireArticle,
-  editArticle
+  editArticle,
+  editCommentStatus
 }

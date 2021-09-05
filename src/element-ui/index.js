@@ -36,7 +36,8 @@ import {
   checkboxGroup,
   radioButton,
   Dialog,
-  Upload
+  Upload,
+  Switch
 } from 'element-ui'
 
 Vue.prototype.$message = Message
@@ -77,3 +78,4 @@ Vue.use(checkboxGroup)
 Vue.use(radioButton)
 Vue.use(Dialog)
 Vue.use(Upload)
+Vue.use(Switch)
