@@ -32,7 +32,11 @@ import {
   Pagination,
   Image,
   Loading,
-  Row
+  Row,
+  checkboxGroup,
+  radioButton,
+  Dialog,
+  Upload
 } from 'element-ui'
 
 Vue.prototype.$message = Message
@@ -69,3 +73,7 @@ Vue.use(TableColumn)
 Vue.use(Tag)
 Vue.use(Pagination)
 Vue.use(Image)
+Vue.use(checkboxGroup)
+Vue.use(radioButton)
+Vue.use(Dialog)
+Vue.use(Upload)

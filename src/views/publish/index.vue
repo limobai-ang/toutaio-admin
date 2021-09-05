@@ -99,7 +99,7 @@ export default {
           type: 1,
           images: []
         },
-        channel_id: 2
+        channel_id: ''
       },
       // 频道信息
       channels: [],
@@ -111,7 +111,20 @@ export default {
           { required: true, message: '请输入文章标题', trigger: 'blur' },
           { min: 5, max: 30, message: '长度在 5 到 30 个字符', trigger: 'blur' }
         ],
-        content: [{ required: true, message: '请输入内容', trigger: 'blur' }],
+        // 输入完内容删除后 content里面会留下一个字符串'<p></p>' 通过自定义验证规则解决
+        content: [
+          {
+            required: true,
+            validator (rule, value, callback) {
+              if (value === '' || value === '<p></p>') {
+                callback(new Error('内容不能为空'))
+              } else {
+                callback()
+              }
+            },
+            trigger: 'blur'
+          }
+        ],
         'cover.type': [
           { required: true, message: '请选择图片类型', trigger: 'blur' }
         ],
@@ -176,11 +189,9 @@ export default {
     },
     // 获取频道信息
     async getChannelsFn () {
-      this.loading = true
       const data = await getChannels().catch(err => err)
       if (data.status !== 200) return this.$message.error('频道信息获取失败')
       this.channels = data.data.data.channels
-      this.loading = false
     },
     // 查询文章
     async inquireArticleFn () {

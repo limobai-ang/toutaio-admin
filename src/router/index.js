@@ -34,6 +34,16 @@ const routes = [
         name: 'publish',
         path: 'publish',
         component: () => import('@/views/publish')
+      },
+      {
+        name: 'image',
+        path: 'image',
+        component: () => import('@/views/images')
+      },
+      {
+        name: 'comment',
+        path: 'comment',
+        component: () => import('@/views/comment')
       }
     ]
   }

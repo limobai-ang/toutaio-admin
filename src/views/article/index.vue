@@ -138,6 +138,7 @@ export default {
         { text: '审核失败', type: 'warning' }, // 3
         { text: '已删除', type: 'danger' } // 4
       ],
+      // 是否加载中
       loading: true
     }
   },
@@ -222,9 +223,5 @@ export default {
 }
 .el-card {
   margin-bottom: 20px;
-}
-.el-pagination {
-  margin-top: 40px;
-  text-align: center;
 }
 </style>
