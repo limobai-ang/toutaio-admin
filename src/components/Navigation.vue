@@ -8,7 +8,10 @@
     router
     :collapse="isCollapse"
   >
-    <h1 class="logo">logo</h1>
+    <h1 class="logo">
+      <img src="@/assets/logo.png" alt="logo" />
+      <span>Hello头条</span>
+    </h1>
     <el-menu-item index="/home">
       <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>
@@ -62,10 +65,18 @@ export default {
   height: 100%;
 }
 .logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   background-color: #001e34;
-  line-height: 100px;
+  height: 100px;
   color: #fff;
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
 .el-menu-item {
   font-size: 18px;

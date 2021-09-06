@@ -12,5 +12,10 @@ const getUserInfo = () => {
   return request.get('/mp/v1_0/user/profile')
 }
 
+// 编辑用户资料
+const editUserInfo = data => {
+  return request.patch('/mp/v1_0/user/profile', data)
+}
+
 // 导出
-export { userLogin, getUserInfo }
+export { userLogin, getUserInfo, editUserInfo }

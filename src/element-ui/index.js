@@ -37,7 +37,8 @@ import {
   radioButton,
   Dialog,
   Upload,
-  Switch
+  Switch,
+  Avatar
 } from 'element-ui'
 
 Vue.prototype.$message = Message
@@ -79,3 +80,4 @@ Vue.use(radioButton)
 Vue.use(Dialog)
 Vue.use(Upload)
 Vue.use(Switch)
+Vue.use(Avatar)

@@ -16,19 +16,24 @@
 </template>
 
 <script>
-import { getUserInfo } from '@/api/user.js'
+// import { getUserInfo } from '@/api/user.js'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'HeadPortrait',
   data () {
     return {
-      userInfo: {}
+      // userInfo: {}
     }
   },
-  async created () {
-    const data = await getUserInfo().catch(err => err)
-    this.userInfo = data.data.data
+  created () {
+    // const data = await getUserInfo().catch(err => err)
+    // this.userInfo = data.data.data
+    this.getUserInfoFn()
   },
   methods: {
+    // 获取用户数据
+    ...mapActions(['getUserInfoFn']),
+    // 退出登录功能
     logout () {
       this.$confirm('确定退出登录吗?', '提示', {
         confirmButtonText: '确定',
@@ -44,6 +49,9 @@ export default {
           this.$message.info('已取消退出')
         })
     }
+  },
+  computed: {
+    ...mapState(['userInfo'])
   }
 }
 </script>
