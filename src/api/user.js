@@ -17,5 +17,10 @@ const editUserInfo = data => {
   return request.patch('/mp/v1_0/user/profile', data)
 }
 
+// 编辑用户头像
+const editPhotoInfo = data => {
+  return request.patch('/mp/v1_0/user/photo', data)
+}
+
 // 导出
-export { userLogin, getUserInfo, editUserInfo }
+export { userLogin, getUserInfo, editUserInfo, editPhotoInfo }
