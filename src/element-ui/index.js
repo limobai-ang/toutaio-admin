@@ -38,7 +38,9 @@ import {
   Dialog,
   Upload,
   Switch,
-  Avatar
+  Avatar,
+  Tabs,
+  TabPane
 } from 'element-ui'
 
 Vue.prototype.$message = Message
@@ -81,3 +83,5 @@ Vue.use(Dialog)
 Vue.use(Upload)
 Vue.use(Switch)
 Vue.use(Avatar)
+Vue.use(Tabs)
+Vue.use(TabPane)

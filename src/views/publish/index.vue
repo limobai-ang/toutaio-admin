@@ -24,6 +24,24 @@
           <el-radio :label="0">无图</el-radio>
           <el-radio :label="-1">自动</el-radio>
         </el-radio-group>
+        <template v-if="form.cover.type > 0">
+          <div class="uploadCoverBox">
+            <!-- <upload-cover
+              v-for="(itme, index) in form.cover.type"
+              :key="index"
+              :coverIndex="index"
+              class="uploadCover"
+              :imgUrl="form.cover.images[index]"
+            ></upload-cover> -->
+            <upload-cover
+              v-for="(itme, index) in form.cover.type"
+              :key="index"
+              :coverIndex="index"
+              class="uploadCover"
+              v-model="form.cover.images[index]"
+            ></upload-cover>
+          </div>
+        </template>
       </el-form-item>
       <el-form-item label="频道：" prop="channel_id">
         <el-select v-model="form.channel_id" placeholder="请选择频道">
@@ -83,12 +101,14 @@ import {
   editArticle
 } from '@/api/article.js'
 
+import uploadCover from './upload-cover.vue'
 // 上传图片接口
 import { uploadingImg } from '@/api/images.js'
 export default {
   name: 'Publish',
   components: {
-    'el-tiptap': ElementTiptap
+    'el-tiptap': ElementTiptap,
+    uploadCover
   },
   data () {
     return {
@@ -199,17 +219,31 @@ export default {
       if (data.status !== 200) return this.$message.error('文章信息获取失败')
       this.form = data.data.data
     }
+    // 更新url
+    // updataUrl (data, index) {
+    //   this.form.cover.images.splice(index, 0, data)
+    // }
   },
   created () {
     // 获取频道信息
     this.getChannelsFn()
-
     // 如果是修改页面就要获取文章数据
     if (this.isEdit) {
       this.inquireArticleFn()
     }
   }
+  // mounted () {
+  //   this.$bus.$on('updataUrl', this.updataUrl)
+  // }
 }
 </script>
 
-<style></style>
+<style scoped>
+.uploadCoverBox {
+  display: flex;
+  line-height: 0;
+}
+.uploadCover {
+  margin-right: 20px;
+}
+</style>

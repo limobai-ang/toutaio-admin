@@ -1,7 +1,8 @@
 // 基于axios来封装请求模块
 import axios from 'axios'
 import JSONbig from 'json-bigint'
-
+import router from '@/router'
+import { Message } from 'element-ui'
 // 创建一个 axios 实例，说白了就是复制了一个 axios
 // 我们通过这个实例去发请求，把需要的配置配置给这个实例来处理
 const request = axios.create({
@@ -55,5 +56,30 @@ request.interceptors.request.use(
   }
 )
 
+// 响应拦截器
+request.interceptors.response.use(
+  function (res) {
+    return res
+  },
+  function (error) {
+    // 对响应错误做点什么;没有权限401，去登录界面
+    console.dir(error)
+    if (error.response.status === 401) {
+      localStorage.removeItem('token')
+      router.push('/login')
+      Message.error('登录状态无效，请重新登录')
+    } else if (error.response.status === 403) {
+      Message.error('没有操作权限')
+    } else if (error.response.status === 400) {
+      Message.error('参数错误')
+    } else if (error.response.status === 507) {
+      router.push('/login')
+      Message.error('服务器数据库异常，请稍后重试')
+    } else {
+      Message.error('网络错误')
+    }
+    return error
+  }
+)
 // 导出请求方法
 export default request
